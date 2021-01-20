@@ -63,9 +63,18 @@ router.get('/prediction', (req, res, next) => {
 });
 
 //Get resturant by id
-router.get('/resturant/:id', (req, res, next) => {
-	const id = req.params.id;
-	res.status(200).send(id);
+router.get('/restaurants/:license', async (req, res, next) => {
+	try {
+		const license = Number(req.params.license);
+		const restaurants = await Restaurants.find({ License: license });
+		if (restaurants) res.status(200).send(restaurants);
+		else {
+			return res.status(400).send('Didnt find the restaurant');
+		}
+	} catch {
+		console.error(err.massage);
+		res.status(500).send('Server error');
+	}
 });
 
 //Get user by id (admin)
