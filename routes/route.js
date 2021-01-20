@@ -1,4 +1,5 @@
 const express = require('express');
+const Restaurants = require('../models/restaurants');
 const Alert = require('../models/Alert');
 const router = express.Router();
 
@@ -30,13 +31,15 @@ router.post('/addAlert', async (req, res, next) => {
 	res.status(200).send('alert was added');
 });
 
-//Get all resturants
-router.get('/resturants', (req, res, next) => {
-	res.status(200).send('resturants');
-});
-
-router.get('/test', (req, res, next) => {
-	res.status(200).send('test');
+//Get all restaurants
+router.get('/restaurants', async (req, res, next) => {
+	try {
+		const restaurants = await Restaurants.find();
+		res.status(200).send(restaurants);
+	} catch {
+		console.error(err.massage);
+		res.status(500).send('Server error');
+	}
 });
 
 //Get resturant prediction
