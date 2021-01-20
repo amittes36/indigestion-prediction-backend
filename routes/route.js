@@ -1,5 +1,6 @@
 const express = require('express');
 const Restaurants = require('../models/restaurants');
+const Inspections = require('../models/inspections');
 const Alert = require('../models/Alert');
 const router = express.Router();
 
@@ -42,6 +43,20 @@ router.get('/restaurants', async (req, res, next) => {
 	}
 });
 
+//Get inspection of restaurant
+router.get('/inspections/:license', async (req, res, next) => {
+	try {
+		const license = Number(req.params.license);
+		const inspections = await Inspections.find({ License: license });
+		if (inspections) res.status(200).send(inspections);
+		else {
+			return res.status(400).send('Didnt find the restaurant');
+		}
+	} catch {
+		console.error(err.massage);
+		res.status(500).send('Server error');
+	}
+});
 //Get resturant prediction
 router.get('/prediction', (req, res, next) => {
 	res.status(200).send('prediction');
