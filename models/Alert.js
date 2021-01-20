@@ -17,12 +17,16 @@ const alertScheme = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	License: {
+		type: Number,
+		required: true
+	},
 	itemPurchased: {
 		type: String,
 		required: true,
 	},
 	dateOfPurchase: {
-		type: String, //change to date!
+		type: Date, //change to date!
 		required: true,
 	},
 	symptoms: {
