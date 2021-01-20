@@ -35,6 +35,10 @@ router.get('/resturants', (req, res, next) => {
 	res.status(200).send('resturants');
 });
 
+router.get('/test', (req, res, next) => {
+	res.status(200).send('test');
+});
+
 //Get resturant prediction
 router.get('/prediction', (req, res, next) => {
 	res.status(200).send('prediction');
