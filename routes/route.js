@@ -10,8 +10,8 @@ router.post('/addAlert', async (req, res, next) => {
 	const alert = new Alert({
 		fullName: alertInfo.fullName,
 		address: alertInfo.address,
-		resturantName: alertInfo.resturantName,
-		resturantAddress: alertInfo.resturantAddress,
+		restaurantName: alertInfo.restaurantName,
+		restaurantAddress: alertInfo.restaurantAddress,
 		itemPurchased: alertInfo.itemPurchased,
 		dateOfPurchase: alertInfo.dateOfPurchase,
 		symptoms: alertInfo.symptoms,
@@ -82,5 +82,7 @@ router.get('/user/:id', (req, res, next) => {
 	const id = req.params.id;
 	res.status(200).send(id);
 });
+
+//Get alerts by restaurant's license
 
 module.exports = router;

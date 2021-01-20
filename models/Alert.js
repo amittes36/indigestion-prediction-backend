@@ -9,11 +9,11 @@ const alertScheme = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
-	resturantName: {
+	restaurantName: {
 		type: String,
 		required: true,
 	},
-	resturantAddress: {
+	restaurantAddress: {
 		type: String,
 		required: true,
 	},
