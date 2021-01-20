@@ -13,6 +13,7 @@ router.post('/addAlert', async (req, res, next) => {
 		address: alertInfo.address,
 		restaurantName: alertInfo.restaurantName,
 		restaurantAddress: alertInfo.restaurantAddress,
+		License: alertInfo.License,
 		itemPurchased: alertInfo.itemPurchased,
 		dateOfPurchase: alertInfo.dateOfPurchase,
 		symptoms: alertInfo.symptoms,
