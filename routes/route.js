@@ -6,6 +6,7 @@ const router = express.Router();
 
 //Post add alert
 router.post('/addAlert', async (req, res, next) => {
+	console.log(req.body);
 	const alertInfo = req.body;
 	const alert = new Alert({
 		fullName: alertInfo.fullName,
@@ -16,13 +17,13 @@ router.post('/addAlert', async (req, res, next) => {
 		dateOfPurchase: alertInfo.dateOfPurchase,
 		symptoms: alertInfo.symptoms,
 	});
-	const validateError = alert.validateSync();
-	if (validateError) {
-		const unValidField = Object.keys(error.errors)[0];
-		const errorPath = error.errors[`${unValidField}`].properties.path;
-		const errMessage = error.errors[`${errorPath}`].properties.message;
-		return res.status(400).json(errMessage);
-	}
+	// const validateError = alert.validateSync();
+	// if (validateError) {
+	// 	const unValidField = Object.keys(error.errors)[0];
+	// 	const errorPath = error.errors[`${unValidField}`].properties.path;
+	// 	const errMessage = error.errors[`${errorPath}`].properties.message;
+	// 	return res.status(400).json(errMessage);
+	// }
 
 	try {
 		await alert.save();

@@ -22,7 +22,7 @@ const alertScheme = new mongoose.Schema({
 		required: true,
 	},
 	dateOfPurchase: {
-		type: Date,
+		type: String, //change to date!
 		required: true,
 	},
 	symptoms: {
