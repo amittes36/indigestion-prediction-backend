@@ -16,6 +16,7 @@ router.post('/addAlert', async (req, res, next) => {
 		License: alertInfo.License,
 		itemPurchased: alertInfo.itemPurchased,
 		dateOfPurchase: alertInfo.dateOfPurchase,
+		timeOfPurchase: alertInfo.timeOfPurchase,
 		symptoms: alertInfo.symptoms,
 	});
 	// const validateError = alert.validateSync();
@@ -86,5 +87,18 @@ router.get('/user/:id', (req, res, next) => {
 });
 
 //Get alerts by restaurant's license
+router.get('/alerts/:license', async (req, res, next) => {
+	try {
+		const license = Number(req.params.license);
+		const alerts = await Alert.find({ License: license });
+		if (alerts) res.status(200).send(alerts);
+		else {
+			return res.status(400).send("Didn't find the alerts for that restaurant");
+		}
+	} catch {
+		console.error(err.massage);
+		res.status(500).send('Server error');
+	}
+});
 
 module.exports = router;

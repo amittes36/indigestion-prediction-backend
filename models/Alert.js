@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const alertScheme = new mongoose.Schema({
+const alertSchema = new mongoose.Schema({
 	fullName: {
 		type: String,
 		required: true,
@@ -29,10 +29,14 @@ const alertScheme = new mongoose.Schema({
 		type: String, //change to date!
 		required: true,
 	},
+	timeOfPurchase: {
+		type: String, //change to date!
+		required: true
+	},
 	symptoms: {
 		type: String,
 		required: true,
 	},
 });
 
-module.exports = mongoose.model('Alert', alertScheme);
+module.exports = mongoose.model('Alert', alertSchema);
