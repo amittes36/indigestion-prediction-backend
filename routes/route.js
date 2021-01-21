@@ -101,7 +101,7 @@ router.get('/alerts/:license', async (req, res, next) => {
 	}
 });
 
-router.get('/restaurantsAlerts/', async (req, res, next) => {
+router.get('/restaurantsAlerts', async (req, res, next) => {
 	try {
 		const restaurants = await Restaurants.find();
 			for (let i = 0; i < restaurants.length; i++){
