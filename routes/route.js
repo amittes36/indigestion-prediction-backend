@@ -101,4 +101,30 @@ router.get('/alerts/:license', async (req, res, next) => {
 	}
 });
 
+router.get('/restaurantsAlerts/', async (req, res, next) => {
+	try {
+		const restaurants = await Restaurants.find();
+			for (let i = 0; i < restaurants.length; i++){
+				const alerts = await Alert.find({ License: restaurants[i].License });
+				if (alerts) {
+					const recentAlerts = alerts.filter(alert => {
+						return (alert.dateOfPurchase === "2021-01-18" || "2021-01-17" || "2021-01-16" || "2021-01-15")
+					})
+					console.log(recentAlerts.length)
+					let rest = restaurants[i]
+					rest["NumberOfAlerts"] = recentAlerts.length
+				}
+				else {
+					return res.status(400).send("Didn't find the alerts for that restaurant");
+				}
+			}
+			res.status(200).send(restaurants);
+		}
+	catch {
+		console.error(err.massage);
+		res.status(500).send('Server error');
+	}
+});
+
+
 module.exports = router;
